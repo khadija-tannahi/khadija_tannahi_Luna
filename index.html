@@ -178,11 +178,11 @@
             <!-- Left: Form -->
             <div class="contact-form-container">
               <h3 class="form-title">Send me a message</h3>
-                <form id="contact-form" class="form-horizontal" role="form" action="#" method="POST">
+                <form id="contact-form" name="leave_message" class="form-horizontal" role="form" action="#" method="POST">
                   
-                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
-                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
-                    <textarea class="form-control" rows="5" placeholder="Message" name="message"></textarea>
+                    <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+                    <textarea class="form-control" rows="5" placeholder="Message" name="message" required></textarea>
 
                     <div class="btn-Container_b">
                        <button class="button" id="submit" type="submit">Send</button>
@@ -231,6 +231,14 @@
         </div>
 
       </div>  
+    </section>
+
+    <section id="messages">
+      <h2>Messages</h2>
+      <ul id="message-list">
+        <!-- Messages will be appended here by JavaScript -->
+      </ul>
+
     </section>
 
 
