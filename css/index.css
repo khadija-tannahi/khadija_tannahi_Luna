@@ -450,6 +450,53 @@
 
     }
 
+      #projects ul {
+      list-style: none;
+      padding: 0;
+      margin: 1.875em 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+       /*margin: 0;
+      display: flex;
+      flex-wrap: wrap; */
+      gap: 1.25em;
+    }
+
+    #projects li {
+      background: linear-gradient(135deg, #0a2435, #174572);
+      color: #E6E2E8;
+      padding: 1.5em 1.875em;
+      border-radius: 12px;
+      border-left: 4px solid #981735;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      font-family: "Lato", sans-serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+
+    #projects li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #981735, #B78F90);
+  }
+
+    #projects li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+
+
+
+
+
     /* connect section */
 
     .connect-intro {
@@ -1305,6 +1352,17 @@
         padding-left: 1em;
       }
 
+      /* Projects Section */
+      #projects ul {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1em;
+      }
+      
+      #projects li {
+        padding: 1.25em 1.5em;
+        font-size: 1rem;
+      }
+
   
       /* Contact Section */
   
@@ -1807,6 +1865,16 @@
   
   .journey-timeline::before {
     left: -4px;
+  }
+
+  /* project section */
+    #projects ul {
+    grid-template-columns: 1fr;
+  }
+  
+  #projects li {
+    padding: 1.2em;
+    font-size: 1rem;
   }
   
   /* Contact Section */
