@@ -431,6 +431,92 @@ messageForm.addEventListener('submit', function(event) {
   
 
 
+// Dark Mode Toggle Implementation
 
+// Create CSS custom properties for colors
+const lightModeColors = {
+  '--bg-primary': '#E6E2E8',
+  '--bg-secondary': '#f8f9fa',
+  '--text-primary': '#0C1D2C',
+  '--text-secondary': '#174572',
+  '--accent-dark': '#981735',
+  '--accent-light': '#B78F90',
+  '--card-bg': '#0C1D2C',
+  '--card-text': '#E6E2E8'
+};
 
+const darkModeColors = {
+  '--bg-primary': '#0f1419',
+  '--bg-secondary': '#1a1f2e',
+  '--text-primary': '#e8e8e8',
+  '--text-secondary': '#a8c5dd',
+  '--accent-dark': '#6b9fb1',
+  '--accent-light': '#8fb3c8',
+  '--card-bg': '#1a1f2e',
+  '--card-text': '#e8e8e8'
+};
+
+// Initialize dark mode from localStorage
+function initDarkMode() {
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+    applyColors(darkModeColors);
+  } else {
+    applyColors(lightModeColors);
+  }
+  updateToggleButton();
+}
+
+// Apply colors using CSS custom properties
+function applyColors(colorScheme) {
+  Object.entries(colorScheme).forEach(([key, value]) => {
+    document.documentElement.style.setProperty(key, value);
+  });
+}
+
+// Toggle dark mode
+function toggleDarkMode() {
+  const isDarkMode = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', isDarkMode);
   
+  if (isDarkMode) {
+    applyColors(darkModeColors);
+  } else {
+    applyColors(lightModeColors);
+  }
+  
+  updateToggleButton();
+}
+
+// Update toggle button appearance
+function updateToggleButton() {
+  const toggle = document.getElementById('dark-mode-toggle');
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  toggle.textContent = isDarkMode ? '☀️' : '🌙';
+  toggle.setAttribute('aria-pressed', isDarkMode);
+}
+
+// Create and insert toggle button into header
+function createToggleButton() {
+  const header = document.querySelector('header');
+  const toggle = document.createElement('button');
+  toggle.id = 'dark-mode-toggle';
+  toggle.className = 'dark-mode-toggle';
+  toggle.setAttribute('aria-label', 'Toggle dark mode');
+  toggle.setAttribute('aria-pressed', 'false');
+  toggle.innerHTML = '🌙';
+  
+  toggle.addEventListener('click', toggleDarkMode);
+  header.appendChild(toggle);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+  createToggleButton();
+  initDarkMode();
+});
+
+
+
+// End of Dark Mode Toggle Implementation
