@@ -286,30 +286,148 @@ messageForm.addEventListener('submit', function(event) {
 
  // lesson-13
 
- // Fetch GitHub repositories
-fetch('https://api.github.com/users/khadija-tannahi/repos')
-  .then(response => response.json())
-  .then(repositories => {
-    console.log(repositories);
+//  // Fetch GitHub repositories
+// fetch('https://api.github.com/users/khadija-tannahi/repos')
+//   .then(response => response.json())
+//   .then(repositories => {
+//     console.log(repositories);
     
-    // Select the projects section and list
-    const projectSection = document.getElementById('projects');
-    const projectList = projectSection.querySelector('ul');
+//     // Select the projects section and list
+//     const projectSection = document.getElementById('projects');
+//     const projectList = projectSection.querySelector('ul');
     
-    // Loop through repositories and create list items
-    for (let i = 0; i < repositories.length; i++) {
-      const project = document.createElement('li');
-      project.innerText = repositories[i].name;
-      projectList.appendChild(project);
-    }
-  })
-  .catch(error => {
-    console.error('Error fetching repositories:', error);
-    // Display error message to user
-    const projectSection = document.getElementById('projects');
-    projectSection.innerHTML += '<p>Unable to load projects at this time.</p>';
-  });
+//     // Loop through repositories and create list items
+//     for (let i = 0; i < repositories.length; i++) {
+//       const project = document.createElement('li');
+//       project.innerText = repositories[i].name;
+//       projectList.appendChild(project);
+//     }
+//   })
+//   .catch(error => {
+//     console.error('Error fetching repositories:', error);
+//     // Display error message to user
+//     const projectSection = document.getElementById('projects');
+//     projectSection.innerHTML += '<p>Unable to load projects at this time.</p>';
+//   });
 
+
+// update lesson 13:
+
+
+// Fetch GitHub repositories
+        fetch('https://api.github.com/users/khadija-tannahi/repos')
+            .then(response => response.json())
+            .then(repositories => {
+                console.log(repositories);
+                
+                // Select the projects track
+                const projectTrack = document.querySelector('.projects-track');
+                
+                // Filter out forked repositories and sort by updated date
+                const originalRepos = repositories
+                    .filter(repo => !repo.fork)
+                    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+                
+                // Loop through repositories and create cards
+                originalRepos.forEach(repo => {
+                    const projectCard = document.createElement('a');
+                    projectCard.href = repo.html_url;
+                    projectCard.target = '_blank';
+                    projectCard.rel = 'noopener noreferrer';
+                    projectCard.className = 'project-card';
+
+                    // Get description or provide default
+                    const description = repo.description || 'No description available';
+
+                    // Check for custom images
+                    const customImages = {
+                        'khadija_tannahi_Luna': 'my_picture.jpg',
+                        'form-validation': 'form.jpg',
+                        'grade-converter': 'grade.jpg',
+                        'open-api-weather':'Weather.png',
+                        'new-england-js':'newEngland_js.jpeg',
+                        'new-england-facts-dom':'new-england-states.jpeg',
+                        '':''
+                    };
+
+                    let imageContent;
+                    if (customImages[repo.name]) {
+                        imageContent = `<img src="images/${customImages[repo.name]}" alt="${repo.name} image">`;
+                    } else {
+                        imageContent = `<span class="project-icon">📦</span>`;
+                    }
+
+                    projectCard.innerHTML = `
+                        <div class="project-image">
+                            ${imageContent}
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">${repo.name}</h3>
+                            <p class="project-description">${description}</p>
+                            <span class="project-link">View on GitHub →</span>
+                        </div>
+                    `;
+
+                    projectTrack.appendChild(projectCard);
+                });
+                
+                // Slider functionality for desktop only
+                const projectTrackElement = document.querySelector('.projects-track');
+                const prevBtn = document.querySelector('.prev-btn');
+                const nextBtn = document.querySelector('.next-btn');
+                const sliderControls = document.querySelector('.slider-controls');
+
+                let currentIndex = 0;
+
+                function updateSliderPosition() {
+                    const cardWidth = 280 + 20; // card width + gap
+                    projectTrackElement.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+                    prevBtn.disabled = currentIndex === 0;
+                    nextBtn.disabled = currentIndex >= originalRepos.length - 3;
+                }
+
+                function showSliderControls() {
+                    if (window.innerWidth >= 1025 && originalRepos.length > 3) {
+                        projectTrackElement.classList.add('slider-mode');
+                        projectTrackElement.parentElement.classList.add('slider-mode');
+                        sliderControls.classList.add('active');
+                    } else {
+                        projectTrackElement.classList.remove('slider-mode');
+                        projectTrackElement.parentElement.classList.remove('slider-mode');
+                        sliderControls.classList.remove('active');
+                    }
+                }
+
+                prevBtn.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateSliderPosition();
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    if (currentIndex < originalRepos.length - 3) {
+                        currentIndex++;
+                        updateSliderPosition();
+                    }
+                });
+
+                // Handle window resize
+                window.addEventListener('resize', showSliderControls);
+
+                // Initial setup
+                showSliderControls();
+                updateSliderPosition();
+            })
+            .catch(error => {
+                console.error('Error fetching repositories:', error);
+                const projectSection = document.getElementById('projects');
+                const errorMsg = document.createElement('p');
+                errorMsg.textContent = 'Unable to load projects at this time.';
+                errorMsg.style.color = '#B78F90';
+                projectSection.appendChild(errorMsg);
+            });
+// end of lesson 13
   
 
 
