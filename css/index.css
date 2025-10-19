@@ -1114,6 +1114,217 @@
 
 
     /* footer */
+    /* footer styling with javascript  */
+
+    /* Dark Mode Styles */
+
+:root {
+  --bg-primary: #E6E2E8;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #0C1D2C;
+  --text-secondary: #174572;
+  --accent-dark: #981735;
+  --accent-light: #B78F90;
+  --card-bg: #0C1D2C;
+  --card-text: #E6E2E8;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #1a1a2e;
+  color: #E6E2E8;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+  position: fixed;
+  top: 0.58em;
+  right: 1.5em;
+  z-index: 1001;
+  background: var(--accent-dark);
+  border: 2px solid var(--accent-light);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-toggle:focus {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 2px;
+}
+
+/* Media queries for dark mode toggle button responsiveness */
+@media (max-width: 1024px) {
+  .dark-mode-toggle {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+    top: 0.6em;
+    right: 1.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .dark-mode-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+    top: 0.65em;
+    right: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .dark-mode-toggle {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+    top: 0.7em;
+    right: 0.8em;
+  }
+}
+
+/* Update existing elements to use CSS variables */
+header {
+  background: var(--card-bg);
+  color: var(--card-text);
+}
+
+h2 {
+  color: var(--accent-dark);
+}
+
+.cta-button, .button {
+  background: linear-gradient(135deg, var(--accent-dark), #B78F90, var(--text-secondary));
+}
+
+/* Smooth transitions for all color changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+
+body.dark-mode h1 {
+  background: linear-gradient(45deg, #B78F90, #a8c5dd, #6b9fb1, #B78F90, #8fb3c8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 300% 300%;
+}
+
+body.dark-mode .timeline-item {
+  background-color: #2a3a4a;
+  color: #e8e8e8;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .timeline-item strong {
+  color: #8fb3c8;
+}
+
+body.dark-mode .about1,
+body.dark-mode .about2 {
+  color: #e8e8e8;
+}
+
+body.dark-mode .highlight-box {
+  background: linear-gradient(135deg, #1a242f, #2a3a4a);
+  color: #e8e8e8;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .highlight-box h3 {
+  color: #8fb3c8;
+}
+
+body.dark-mode .hero .greeting {
+  color: #8fb3c8;
+}
+
+body.dark-mode .hero .tagline {
+  color: #a8c5dd;
+}
+
+body.dark-mode .intro {
+  color: #e8e8e8;
+}
+
+body.dark-mode .journey-timeline::before {
+  background: linear-gradient(to bottom, #6b9fb1, #8fb3c8, #B78F90);
+}
+
+body.dark-mode .experience-item {
+  background: #1a242f;
+  border-color: #6b9fb1;
+  color: #e8e8e8;
+}
+
+body.dark-mode .experience-item h3 {
+  color: #8fb3c8;
+}
+
+body.dark-mode .skills-learned li {
+  background-color: rgba(107, 159, 177, 0.15);
+  color: #e8e8e8;
+}
+
+body.dark-mode #divider {
+  background-color: #0C1D2C;
+  color: #e8e8e8;
+}
+
+body.dark-mode .form-control {
+  background-color: #0f1419;
+  color: #e8e8e8;
+  border-color: #6b9fb1;
+}
+
+body.dark-mode .form-control:focus {
+  border-color: #8fb3c8;
+  box-shadow: 0 0 10px rgba(107, 159, 177, 0.3);
+}
+
+body.dark-mode .direct-contact-container {
+  background-color: #1a242f;
+}
+
+body.dark-mode .project-card {
+  background: linear-gradient(135deg, #1a242f, #2a3a4a);
+  border-left-color: #6b9fb1;
+}
+
+body.dark-mode #message-list li {
+  background: linear-gradient(135deg, #1a242f, #2a3a4a);
+  border-left-color: #6b9fb1;
+}
+
+body.dark-mode .connect-intro p {
+  color: #e8e8e8;
+}
+
+
+body.dark-mode .connect-intro h3 {
+  color: #e8e8e8;
+}
+
+  
    
 
   /* =================================== */
@@ -1214,47 +1425,7 @@
    /*             TABLET STYLES            */
    /* =================================== */
 
-      @media (max-width: 1024px) {
-      main {
-        width: 90%;
-        padding: 1em 0;
-      }
-      
-      .hero {
-        gap: 2em;
-        padding: 2em;
-        margin: 2.5em auto;
-      }
-      
-      .hero img {
-        width: 280px;
-        height: 280px;
-      }
-      
-      h1 {
-        font-size: 2.2rem;
-      }
-      
-      .skills-learned {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 0.8em;
-      }
-      
-      .timeline-item {
-        margin-left: 1.5em;
-      }
-      
-      .timeline-item::before {
-        left: -35px;
-      }
-    }
-
-
-    /* =================================== */
-   /*   Tablet STYLES - smaller screen    */
-   /* =================================== */
-
-      /* hamburger menu */
+         /* hamburger menu */
 
     /* Hide the checkbox input */
     .menu-toggle {
@@ -1303,6 +1474,175 @@
       transition: opacity 0.3s ease;
       backdrop-filter: blur(2px);
   }
+
+
+      @media (max-width: 1024px) {
+
+    
+      /* Hamburger menu stays the same */
+
+      .hamburger {
+        display: flex;
+      /* right: 0.8em;  */
+      }
+
+      header{
+        padding: 0.3em 0;
+        height: 50px;
+        margin-bottom: 1em;
+      }
+
+  /* Position the checkbox over the hamburger  */
+    .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        width: 30px;
+        height: 25px;
+        opacity: 0;
+        z-index: 1002;
+        cursor: pointer;
+        display: block;
+        color: whitesmoke;
+    }
+
+      /* navigation for mobile  */
+    nav ul {
+        position: fixed;
+        top: 50px; /* Adjust based on header height */
+        left: -100%;
+        height: 100vh;
+        width: 280px;
+        background: #0C1D2C;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: 1000;
+        box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
+        list-style: none;
+        margin: 0;
+        padding-left: 0; 
+        overflow-y: auto;
+    }
+
+    
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+
+    
+    nav ul li a {
+        display: block;
+        width: 100%;
+        padding: 1.2rem 0;
+        margin: 0;
+        font-size: 1.2rem;
+        border-bottom: 1px solid rgba(23, 69, 114, 0.3);
+        transition: all 0.3s ease;
+        color: #E6E2E8;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    nav ul li a:hover {
+        background: #174572;
+        font-size: 1.2rem;
+        color: #B78F90;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+    }
+
+    nav ul li a::after {
+         display: none;
+   }
+    
+    
+
+        /* Show overlay when menu is active */
+        .menu-toggle:checked ~ .nav-overlay {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Show menu when checkbox is checked */
+        .menu-toggle:checked ~ ul {
+            left: 0;
+        }
+
+        /* Animate hamburger when checkbox is checked */
+        .menu-toggle:checked + .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle:checked + .hamburger span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .menu-toggle:checked + .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+    /* Close menu when clicking nav links */
+    nav ul li a {
+        position: relative;
+    }
+
+    nav ul li a::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1002; /*  this to ensure it's above the link */
+    }
+    
+
+
+      main {
+        width: 90%;
+        padding: 1em 0;
+      }
+      
+      .hero {
+        gap: 2em;
+        padding: 2em;
+        margin: 2.5em auto;
+      }
+      
+      .hero img {
+        width: 280px;
+        height: 280px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .skills-learned {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 0.8em;
+      }
+      
+      .timeline-item {
+        margin-left: 1.5em;
+      }
+      
+      .timeline-item::before {
+        left: -35px;
+      }
+    }
+
+
+    /* =================================== */
+   /*   Tablet STYLES - smaller screen    */
+   /* =================================== */
+
 
 
     @media (max-width: 768px) {
